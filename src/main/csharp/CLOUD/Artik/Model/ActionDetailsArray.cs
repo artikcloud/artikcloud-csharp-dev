@@ -22,20 +22,20 @@ namespace CLOUD.Artik.Model
         /// Initializes a new instance of the <see cref="ActionDetailsArray" /> class.
         /// Initializes a new instance of the <see cref="ActionDetailsArray" />class.
         /// </summary>
-        /// <param name="Tags">Tags.</param>
+        /// <param name="Actions">Actions.</param>
 
-        public ActionDetailsArray(List<ActionDetails> Tags = null)
+        public ActionDetailsArray(List<ActionDetails> Actions = null)
         {
-            this.Tags = Tags;
+            this.Actions = Actions;
             
         }
         
     
         /// <summary>
-        /// Gets or Sets Tags
+        /// Gets or Sets Actions
         /// </summary>
-        [DataMember(Name="tags", EmitDefaultValue=false)]
-        public List<ActionDetails> Tags { get; set; }
+        [DataMember(Name="actions", EmitDefaultValue=false)]
+        public List<ActionDetails> Actions { get; set; }
     
         /// <summary>
         /// Returns the string presentation of the object
@@ -45,7 +45,7 @@ namespace CLOUD.Artik.Model
         {
             var sb = new StringBuilder();
             sb.Append("class ActionDetailsArray {\n");
-            sb.Append("  Tags: ").Append(Tags).Append("\n");
+            sb.Append("  Actions: ").Append(Actions).Append("\n");
             
             sb.Append("}\n");
             return sb.ToString();
@@ -84,9 +84,9 @@ namespace CLOUD.Artik.Model
 
             return 
                 (
-                    this.Tags == other.Tags ||
-                    this.Tags != null &&
-                    this.Tags.SequenceEqual(other.Tags)
+                    this.Actions == other.Actions ||
+                    this.Actions != null &&
+                    this.Actions.SequenceEqual(other.Actions)
                 );
         }
 
@@ -102,8 +102,8 @@ namespace CLOUD.Artik.Model
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
                 
-                if (this.Tags != null)
-                    hash = hash * 59 + this.Tags.GetHashCode();
+                if (this.Actions != null)
+                    hash = hash * 59 + this.Actions.GetHashCode();
                 
                 return hash;
             }
