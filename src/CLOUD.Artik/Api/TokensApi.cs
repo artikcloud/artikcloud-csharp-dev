@@ -40,7 +40,7 @@ namespace CLOUD.Artik.Api
         /// Check Token
         /// </summary>
         /// <remarks>
-        /// Check Token
+        /// (Deprecated) Check Token. See tokenInfo
         /// </remarks>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tokenInfo">Token object to be checked</param>
@@ -51,7 +51,7 @@ namespace CLOUD.Artik.Api
         /// Check Token
         /// </summary>
         /// <remarks>
-        /// Check Token
+        /// (Deprecated) Check Token. See tokenInfo
         /// </remarks>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tokenInfo">Token object to be checked</param>
@@ -86,7 +86,7 @@ namespace CLOUD.Artik.Api
         /// Check Token
         /// </summary>
         /// <remarks>
-        /// Check Token
+        /// (Deprecated) Check Token. See tokenInfo
         /// </remarks>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tokenInfo">Token object to be checked</param>
@@ -97,7 +97,7 @@ namespace CLOUD.Artik.Api
         /// Check Token
         /// </summary>
         /// <remarks>
-        /// Check Token
+        /// (Deprecated) Check Token. See tokenInfo
         /// </remarks>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tokenInfo">Token object to be checked</param>
@@ -239,7 +239,7 @@ namespace CLOUD.Artik.Api
         }
 
         /// <summary>
-        /// Check Token Check Token
+        /// Check Token (Deprecated) Check Token. See tokenInfo
         /// </summary>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tokenInfo">Token object to be checked</param>
@@ -251,7 +251,7 @@ namespace CLOUD.Artik.Api
         }
 
         /// <summary>
-        /// Check Token Check Token
+        /// Check Token (Deprecated) Check Token. See tokenInfo
         /// </summary>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tokenInfo">Token object to be checked</param>
@@ -322,7 +322,7 @@ namespace CLOUD.Artik.Api
         }
 
         /// <summary>
-        /// Check Token Check Token
+        /// Check Token (Deprecated) Check Token. See tokenInfo
         /// </summary>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tokenInfo">Token object to be checked</param>
@@ -335,7 +335,7 @@ namespace CLOUD.Artik.Api
         }
 
         /// <summary>
-        /// Check Token Check Token
+        /// Check Token (Deprecated) Check Token. See tokenInfo
         /// </summary>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tokenInfo">Token object to be checked</param>

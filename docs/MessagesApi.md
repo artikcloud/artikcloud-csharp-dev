@@ -4,7 +4,7 @@ All URIs are relative to *https://api.artik.cloud/v1.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetAggregatesHistogram**](MessagesApi.md#getaggregateshistogram) | **GET** /messages/analytics/histogram | Get Histogram aggregates
+[**GetAggregatesHistogram**](MessagesApi.md#getaggregateshistogram) | **GET** /messages/analytics/histogram | Get Normalized Message Histogram
 [**GetFieldPresence**](MessagesApi.md#getfieldpresence) | **GET** /messages/presence | Get normalized message presence
 [**GetLastNormalizedMessages**](MessagesApi.md#getlastnormalizedmessages) | **GET** /messages/last | Get Last Normalized Message
 [**GetMessageAggregates**](MessagesApi.md#getmessageaggregates) | **GET** /messages/analytics/aggregates | Get Normalized Message Aggregates
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 # **GetAggregatesHistogram**
 > AggregatesHistogramResponse GetAggregatesHistogram (long? startDate, long? endDate, string sdid = null, string field = null, string interval = null)
 
-Get Histogram aggregates
+Get Normalized Message Histogram
 
 Get Histogram on normalized messages.
 
@@ -48,7 +48,7 @@ namespace Example
 
             try
             {
-                // Get Histogram aggregates
+                // Get Normalized Message Histogram
                 AggregatesHistogramResponse result = apiInstance.GetAggregatesHistogram(startDate, endDate, sdid, field, interval);
                 Debug.WriteLine(result);
             }
@@ -455,7 +455,7 @@ Name | Type | Description  | Notes
 
 Send Message Action
 
-Send a message or an Action:<br/><table><tr><th>Combination</th><th>Parameters</th><th>Description</th></tr><tr><td>Send Message</td><td>sdid, type=message</td><td>Send a message from a Source Device</td></tr><tr><td>Send Action</td><td>ddid, type=action</td><td>Send an action to a Destination Device</td></tr><tr><td>Common</td><td>data, ts, token</td><td>Parameters that can be used with the above combinations.</td></tr></table>
+(Deprecated) Send a message or an Action:<br/><table><tr><th>Combination</th><th>Parameters</th><th>Description</th></tr><tr><td>Send Message</td><td>sdid, type=message</td><td>Send a message from a Source Device</td></tr><tr><td>Send Action</td><td>ddid, type=action</td><td>Send an action to a Destination Device</td></tr><tr><td>Common</td><td>data, ts, token</td><td>Parameters that can be used with the above combinations.</td></tr></table>
 
 ### Example
 ```csharp

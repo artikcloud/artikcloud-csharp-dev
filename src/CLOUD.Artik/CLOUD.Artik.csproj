@@ -24,7 +24,7 @@ limitations under the License.
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B6204452-E72B-412E-AE50-933F92C79161}</ProjectGuid>
+    <ProjectGuid>{F8065CB8-ADE3-4157-9A3B-3FCE2255F972}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CLOUD.Artik</RootNamespace>
