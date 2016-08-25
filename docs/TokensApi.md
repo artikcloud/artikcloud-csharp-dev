@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CheckToken**](TokensApi.md#checktoken) | **POST** /accounts/checkToken | Check Token
 [**RefreshToken**](TokensApi.md#refreshtoken) | **POST** /accounts/token | Refresh Token
+[**TokenInfo**](TokensApi.md#tokeninfo) | **GET** /accounts/tokenInfo | Token Info
 
 
 <a name="checktoken"></a>
@@ -136,6 +137,67 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="tokeninfo"></a>
+# **TokenInfo**
+> TokenInfoSuccessResponse TokenInfo ()
+
+Token Info
+
+Returns the Token Information
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using CLOUD.Artik.Api;
+using CLOUD.Artik.Client;
+using CLOUD.Artik.Model;
+
+namespace Example
+{
+    public class TokenInfoExample
+    {
+        public void main()
+        {
+            
+            // Configure OAuth2 access token for authorization: artikcloud_oauth
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new TokensApi();
+
+            try
+            {
+                // Token Info
+                TokenInfoSuccessResponse result = apiInstance.TokenInfo();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling TokensApi.TokenInfo: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**TokenInfoSuccessResponse**](TokenInfoSuccessResponse.md)
+
+### Authorization
+
+[artikcloud_oauth](../README.md#artikcloud_oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

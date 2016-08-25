@@ -55,7 +55,7 @@ namespace CLOUD.Artik.Test
         [SetUp]
         public void Init()
         {
-          String deviceToken = "1eef3e3251e147d1ac707a57f6779c49";
+          String deviceToken = "dc43d12e2b59495daf94631e6ddfe3e8";
           Configuration c1 = new Configuration (timeout: 10000, accessToken: deviceToken);
           instance = new MessagesApi(c1);
         }
@@ -181,17 +181,17 @@ namespace CLOUD.Artik.Test
         }
 
         /// <summary>
-        /// Test SendMessageAction
+        /// Test SendMessage
         /// </summary>
         [Test]
-        public void SendMessageActionTest()
+        public void SendMessageTest()
         {
-          Dictionary<String, Object> data = new Dictionary<String, Object> {{ "volume", 5}};
+          Dictionary<String, Object> data = new Dictionary<String, Object> {{ "steps", 5}};
           long milliseconds = GetCurrentUnixTimestampMillis();
 
-          MessageAction message = new MessageAction (Sdid: "993925c3cd994bf7a51c620884be65e9", Type: "Message", Data: data, Ts: milliseconds);
+          Message message = new Message (Sdid: "19da42ee01414722a6ad1224097c38d4", Type: "Message", Data: data, Ts: milliseconds);
 
-          var response = instance.SendMessageAction(message);
+          var response = instance.SendMessage(message);
           var messageId = response.Data.Mid;
 
           Assert.IsNotNull (messageId);
@@ -202,9 +202,9 @@ namespace CLOUD.Artik.Test
           NormalizedMessage normalized = normalizedMessageEnvelope.Data[0];
           Assert.AreEqual (messageId, normalized.Mid);
 
-          Object volume = normalized.Data["volume"];
-          Assert.IsNotNull(volume);
-          Assert.AreEqual(5, volume);
+          Object steps = normalized.Data["steps"];
+          Assert.IsNotNull(steps);
+          Assert.AreEqual(5, steps);
         }
 
     }

@@ -86,7 +86,7 @@ limitations under the License.
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
       <ProjectReference Include="..\CLOUD.Artik\CLOUD.Artik.csproj">
-          <Project>{F8065CB8-ADE3-4157-9A3B-3FCE2255F972}</Project>
+          <Project>{EA3106F6-E073-4FD8-B7BE-C1C3A1F15C98}</Project>
           <Name>CLOUD.Artik</Name>
       </ProjectReference>
   </ItemGroup>

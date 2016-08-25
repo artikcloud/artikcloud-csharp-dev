@@ -54,7 +54,7 @@ namespace CLOUD.Artik.Test
         public void Init()
         {
           // set timeout to 10 seconds
-          Configuration c1 = new Configuration (timeout: 10000, accessToken: "12d094c0b6294f7f9bdbfcf0d2f6c64b");
+          Configuration c1 = new Configuration (timeout: 10000, accessToken: "fa460261b858484583097ecb331faaa8");
           instance = new UsersApi(c1);
         }
 

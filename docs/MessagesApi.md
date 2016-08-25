@@ -9,8 +9,10 @@ Method | HTTP request | Description
 [**GetLastNormalizedMessages**](MessagesApi.md#getlastnormalizedmessages) | **GET** /messages/last | Get Last Normalized Message
 [**GetMessageAggregates**](MessagesApi.md#getmessageaggregates) | **GET** /messages/analytics/aggregates | Get Normalized Message Aggregates
 [**GetMessageSnapshots**](MessagesApi.md#getmessagesnapshots) | **GET** /messages/snapshots | Get Message Snapshots
+[**GetNormalizedActions**](MessagesApi.md#getnormalizedactions) | **GET** /actions | Get Normalized Actions
 [**GetNormalizedMessages**](MessagesApi.md#getnormalizedmessages) | **GET** /messages | Get Normalized Messages
-[**SendMessageAction**](MessagesApi.md#sendmessageaction) | **POST** /messages | Send Message Action
+[**SendActions**](MessagesApi.md#sendactions) | **POST** /actions | Send Actions
+[**SendMessage**](MessagesApi.md#sendmessage) | **POST** /messages | Send Message
 
 
 <a name="getaggregateshistogram"></a>
@@ -366,6 +368,85 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="getnormalizedactions"></a>
+# **GetNormalizedActions**
+> NormalizedActionsEnvelope GetNormalizedActions (string uid = null, string ddid = null, string mid = null, string offset = null, int? count = null, long? startDate = null, long? endDate = null, string order = null)
+
+Get Normalized Actions
+
+Get the actions normalized
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using CLOUD.Artik.Api;
+using CLOUD.Artik.Client;
+using CLOUD.Artik.Model;
+
+namespace Example
+{
+    public class GetNormalizedActionsExample
+    {
+        public void main()
+        {
+            
+            // Configure OAuth2 access token for authorization: artikcloud_oauth
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new MessagesApi();
+            var uid = uid_example;  // string | User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional) 
+            var ddid = ddid_example;  // string | Destination device ID of the actions being searched. (optional) 
+            var mid = mid_example;  // string | The message ID being searched. (optional) 
+            var offset = offset_example;  // string | A string that represents the starting item, should be the value of 'next' field received in the last response. (required for pagination) (optional) 
+            var count = 56;  // int? | count (optional) 
+            var startDate = 789;  // long? | startDate (optional) 
+            var endDate = 789;  // long? | endDate (optional) 
+            var order = order_example;  // string | Desired sort order: 'asc' or 'desc' (optional) 
+
+            try
+            {
+                // Get Normalized Actions
+                NormalizedActionsEnvelope result = apiInstance.GetNormalizedActions(uid, ddid, mid, offset, count, startDate, endDate, order);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling MessagesApi.GetNormalizedActions: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uid** | **string**| User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. | [optional] 
+ **ddid** | **string**| Destination device ID of the actions being searched. | [optional] 
+ **mid** | **string**| The message ID being searched. | [optional] 
+ **offset** | **string**| A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) | [optional] 
+ **count** | **int?**| count | [optional] 
+ **startDate** | **long?**| startDate | [optional] 
+ **endDate** | **long?**| endDate | [optional] 
+ **order** | **string**| Desired sort order: &#39;asc&#39; or &#39;desc&#39; | [optional] 
+
+### Return type
+
+[**NormalizedActionsEnvelope**](NormalizedActionsEnvelope.md)
+
+### Authorization
+
+[artikcloud_oauth](../README.md#artikcloud_oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="getnormalizedmessages"></a>
 # **GetNormalizedMessages**
 > NormalizedMessagesEnvelope GetNormalizedMessages (string uid = null, string sdid = null, string mid = null, string fieldPresence = null, string filter = null, string offset = null, int? count = null, long? startDate = null, long? endDate = null, string order = null)
@@ -395,7 +476,7 @@ namespace Example
             var apiInstance = new MessagesApi();
             var uid = uid_example;  // string | User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional) 
             var sdid = sdid_example;  // string | Source device ID of the messages being searched. (optional) 
-            var mid = mid_example;  // string | The SAMI message ID being searched. (optional) 
+            var mid = mid_example;  // string | The message ID being searched. (optional) 
             var fieldPresence = fieldPresence_example;  // string | String representing a field from the specified device ID. (optional) 
             var filter = filter_example;  // string | Filter. (optional) 
             var offset = offset_example;  // string | A string that represents the starting item, should be the value of 'next' field received in the last response. (required for pagination) (optional) 
@@ -425,7 +506,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uid** | **string**| User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. | [optional] 
  **sdid** | **string**| Source device ID of the messages being searched. | [optional] 
- **mid** | **string**| The SAMI message ID being searched. | [optional] 
+ **mid** | **string**| The message ID being searched. | [optional] 
  **fieldPresence** | **string**| String representing a field from the specified device ID. | [optional] 
  **filter** | **string**| Filter. | [optional] 
  **offset** | **string**| A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) | [optional] 
@@ -449,13 +530,13 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="sendmessageaction"></a>
-# **SendMessageAction**
-> MessageIDEnvelope SendMessageAction (MessageAction data)
+<a name="sendactions"></a>
+# **SendActions**
+> MessageIDEnvelope SendActions (Actions data)
 
-Send Message Action
+Send Actions
 
-(Deprecated) Send a message or an Action:<br/><table><tr><th>Combination</th><th>Parameters</th><th>Description</th></tr><tr><td>Send Message</td><td>sdid, type=message</td><td>Send a message from a Source Device</td></tr><tr><td>Send Action</td><td>ddid, type=action</td><td>Send an action to a Destination Device</td></tr><tr><td>Common</td><td>data, ts, token</td><td>Parameters that can be used with the above combinations.</td></tr></table>
+Send Actions
 
 ### Example
 ```csharp
@@ -467,7 +548,7 @@ using CLOUD.Artik.Model;
 
 namespace Example
 {
-    public class SendMessageActionExample
+    public class SendActionsExample
     {
         public void main()
         {
@@ -476,17 +557,17 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MessagesApi();
-            var data = new MessageAction(); // MessageAction | Message or Action object that is passed in the body
+            var data = new Actions(); // Actions | Actions that are passed in the body
 
             try
             {
-                // Send Message Action
-                MessageIDEnvelope result = apiInstance.SendMessageAction(data);
+                // Send Actions
+                MessageIDEnvelope result = apiInstance.SendActions(data);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling MessagesApi.SendMessageAction: " + e.Message );
+                Debug.Print("Exception when calling MessagesApi.SendActions: " + e.Message );
             }
         }
     }
@@ -497,7 +578,72 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**MessageAction**](MessageAction.md)| Message or Action object that is passed in the body | 
+ **data** | [**Actions**](Actions.md)| Actions that are passed in the body | 
+
+### Return type
+
+[**MessageIDEnvelope**](MessageIDEnvelope.md)
+
+### Authorization
+
+[artikcloud_oauth](../README.md#artikcloud_oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="sendmessage"></a>
+# **SendMessage**
+> MessageIDEnvelope SendMessage (Message data)
+
+Send Message
+
+Send a message
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using CLOUD.Artik.Api;
+using CLOUD.Artik.Client;
+using CLOUD.Artik.Model;
+
+namespace Example
+{
+    public class SendMessageExample
+    {
+        public void main()
+        {
+            
+            // Configure OAuth2 access token for authorization: artikcloud_oauth
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new MessagesApi();
+            var data = new Message(); // Message | Message object that is passed in the body
+
+            try
+            {
+                // Send Message
+                MessageIDEnvelope result = apiInstance.SendMessage(data);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling MessagesApi.SendMessage: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **data** | [**Message**](Message.md)| Message object that is passed in the body | 
 
 ### Return type
 

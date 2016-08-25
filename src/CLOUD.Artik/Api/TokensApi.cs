@@ -80,6 +80,25 @@ namespace CLOUD.Artik.Api
         /// <param name="refreshToken">Refresh Token.</param>
         /// <returns>ApiResponse of RefreshTokenResponse</returns>
         ApiResponse<RefreshTokenResponse> RefreshTokenWithHttpInfo (string grantType, string refreshToken);
+        /// <summary>
+        /// Token Info
+        /// </summary>
+        /// <remarks>
+        /// Returns the Token Information
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>TokenInfoSuccessResponse</returns>
+        TokenInfoSuccessResponse TokenInfo ();
+
+        /// <summary>
+        /// Token Info
+        /// </summary>
+        /// <remarks>
+        /// Returns the Token Information
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of TokenInfoSuccessResponse</returns>
+        ApiResponse<TokenInfoSuccessResponse> TokenInfoWithHttpInfo ();
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -126,6 +145,25 @@ namespace CLOUD.Artik.Api
         /// <param name="refreshToken">Refresh Token.</param>
         /// <returns>Task of ApiResponse (RefreshTokenResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<RefreshTokenResponse>> RefreshTokenAsyncWithHttpInfo (string grantType, string refreshToken);
+        /// <summary>
+        /// Token Info
+        /// </summary>
+        /// <remarks>
+        /// Returns the Token Information
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of TokenInfoSuccessResponse</returns>
+        System.Threading.Tasks.Task<TokenInfoSuccessResponse> TokenInfoAsync ();
+
+        /// <summary>
+        /// Token Info
+        /// </summary>
+        /// <remarks>
+        /// Returns the Token Information
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (TokenInfoSuccessResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TokenInfoSuccessResponse>> TokenInfoAsyncWithHttpInfo ();
         #endregion Asynchronous Operations
     }
 
@@ -569,6 +607,147 @@ namespace CLOUD.Artik.Api
             return new ApiResponse<RefreshTokenResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (RefreshTokenResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(RefreshTokenResponse)));
+            
+        }
+
+        /// <summary>
+        /// Token Info Returns the Token Information
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>TokenInfoSuccessResponse</returns>
+        public TokenInfoSuccessResponse TokenInfo ()
+        {
+             ApiResponse<TokenInfoSuccessResponse> localVarResponse = TokenInfoWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Token Info Returns the Token Information
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of TokenInfoSuccessResponse</returns>
+        public ApiResponse< TokenInfoSuccessResponse > TokenInfoWithHttpInfo ()
+        {
+
+            var localVarPath = "/accounts/tokenInfo";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (artikcloud_oauth) required
+            // oauth required
+            if (!String.IsNullOrEmpty(Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("TokenInfo", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TokenInfoSuccessResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TokenInfoSuccessResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TokenInfoSuccessResponse)));
+            
+        }
+
+        /// <summary>
+        /// Token Info Returns the Token Information
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of TokenInfoSuccessResponse</returns>
+        public async System.Threading.Tasks.Task<TokenInfoSuccessResponse> TokenInfoAsync ()
+        {
+             ApiResponse<TokenInfoSuccessResponse> localVarResponse = await TokenInfoAsyncWithHttpInfo();
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Token Info Returns the Token Information
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (TokenInfoSuccessResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<TokenInfoSuccessResponse>> TokenInfoAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/accounts/tokenInfo";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (artikcloud_oauth) required
+            // oauth required
+            if (!String.IsNullOrEmpty(Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("TokenInfo", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TokenInfoSuccessResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TokenInfoSuccessResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TokenInfoSuccessResponse)));
             
         }
 

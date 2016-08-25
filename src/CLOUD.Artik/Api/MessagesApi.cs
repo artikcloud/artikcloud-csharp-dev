@@ -170,6 +170,41 @@ namespace CLOUD.Artik.Api
         /// <returns>ApiResponse of SnapshotResponses</returns>
         ApiResponse<SnapshotResponses> GetMessageSnapshotsWithHttpInfo (string sdids, bool? includeTimestamp = null);
         /// <summary>
+        /// Get Normalized Actions
+        /// </summary>
+        /// <remarks>
+        /// Get the actions normalized
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
+        /// <param name="ddid">Destination device ID of the actions being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
+        /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
+        /// <param name="count">count (optional)</param>
+        /// <param name="startDate">startDate (optional)</param>
+        /// <param name="endDate">endDate (optional)</param>
+        /// <param name="order">Desired sort order: &#39;asc&#39; or &#39;desc&#39; (optional)</param>
+        /// <returns>NormalizedActionsEnvelope</returns>
+        NormalizedActionsEnvelope GetNormalizedActions (string uid = null, string ddid = null, string mid = null, string offset = null, int? count = null, long? startDate = null, long? endDate = null, string order = null);
+
+        /// <summary>
+        /// Get Normalized Actions
+        /// </summary>
+        /// <remarks>
+        /// Get the actions normalized
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
+        /// <param name="ddid">Destination device ID of the actions being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
+        /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
+        /// <param name="count">count (optional)</param>
+        /// <param name="startDate">startDate (optional)</param>
+        /// <param name="endDate">endDate (optional)</param>
+        /// <param name="order">Desired sort order: &#39;asc&#39; or &#39;desc&#39; (optional)</param>
+        /// <returns>ApiResponse of NormalizedActionsEnvelope</returns>
+        ApiResponse<NormalizedActionsEnvelope> GetNormalizedActionsWithHttpInfo (string uid = null, string ddid = null, string mid = null, string offset = null, int? count = null, long? startDate = null, long? endDate = null, string order = null);
+        /// <summary>
         /// Get Normalized Messages
         /// </summary>
         /// <remarks>
@@ -178,7 +213,7 @@ namespace CLOUD.Artik.Api
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
         /// <param name="sdid">Source device ID of the messages being searched. (optional)</param>
-        /// <param name="mid">The SAMI message ID being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
         /// <param name="fieldPresence">String representing a field from the specified device ID. (optional)</param>
         /// <param name="filter">Filter. (optional)</param>
         /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
@@ -198,7 +233,7 @@ namespace CLOUD.Artik.Api
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
         /// <param name="sdid">Source device ID of the messages being searched. (optional)</param>
-        /// <param name="mid">The SAMI message ID being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
         /// <param name="fieldPresence">String representing a field from the specified device ID. (optional)</param>
         /// <param name="filter">Filter. (optional)</param>
         /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
@@ -209,26 +244,47 @@ namespace CLOUD.Artik.Api
         /// <returns>ApiResponse of NormalizedMessagesEnvelope</returns>
         ApiResponse<NormalizedMessagesEnvelope> GetNormalizedMessagesWithHttpInfo (string uid = null, string sdid = null, string mid = null, string fieldPresence = null, string filter = null, string offset = null, int? count = null, long? startDate = null, long? endDate = null, string order = null);
         /// <summary>
-        /// Send Message Action
+        /// Send Actions
         /// </summary>
         /// <remarks>
-        /// (Deprecated) Send a message or an Action:&lt;br/&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Combination&lt;/th&gt;&lt;th&gt;Parameters&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Message&lt;/td&gt;&lt;td&gt;sdid, type&#x3D;message&lt;/td&gt;&lt;td&gt;Send a message from a Source Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Action&lt;/td&gt;&lt;td&gt;ddid, type&#x3D;action&lt;/td&gt;&lt;td&gt;Send an action to a Destination Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Common&lt;/td&gt;&lt;td&gt;data, ts, token&lt;/td&gt;&lt;td&gt;Parameters that can be used with the above combinations.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        /// Send Actions
         /// </remarks>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="data">Message or Action object that is passed in the body</param>
+        /// <param name="data">Actions that are passed in the body</param>
         /// <returns>MessageIDEnvelope</returns>
-        MessageIDEnvelope SendMessageAction (MessageAction data);
+        MessageIDEnvelope SendActions (Actions data);
 
         /// <summary>
-        /// Send Message Action
+        /// Send Actions
         /// </summary>
         /// <remarks>
-        /// (Deprecated) Send a message or an Action:&lt;br/&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Combination&lt;/th&gt;&lt;th&gt;Parameters&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Message&lt;/td&gt;&lt;td&gt;sdid, type&#x3D;message&lt;/td&gt;&lt;td&gt;Send a message from a Source Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Action&lt;/td&gt;&lt;td&gt;ddid, type&#x3D;action&lt;/td&gt;&lt;td&gt;Send an action to a Destination Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Common&lt;/td&gt;&lt;td&gt;data, ts, token&lt;/td&gt;&lt;td&gt;Parameters that can be used with the above combinations.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        /// Send Actions
         /// </remarks>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="data">Message or Action object that is passed in the body</param>
+        /// <param name="data">Actions that are passed in the body</param>
         /// <returns>ApiResponse of MessageIDEnvelope</returns>
-        ApiResponse<MessageIDEnvelope> SendMessageActionWithHttpInfo (MessageAction data);
+        ApiResponse<MessageIDEnvelope> SendActionsWithHttpInfo (Actions data);
+        /// <summary>
+        /// Send Message
+        /// </summary>
+        /// <remarks>
+        /// Send a message
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="data">Message object that is passed in the body</param>
+        /// <returns>MessageIDEnvelope</returns>
+        MessageIDEnvelope SendMessage (Message data);
+
+        /// <summary>
+        /// Send Message
+        /// </summary>
+        /// <remarks>
+        /// Send a message
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="data">Message object that is passed in the body</param>
+        /// <returns>ApiResponse of MessageIDEnvelope</returns>
+        ApiResponse<MessageIDEnvelope> SendMessageWithHttpInfo (Message data);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -365,6 +421,41 @@ namespace CLOUD.Artik.Api
         /// <returns>Task of ApiResponse (SnapshotResponses)</returns>
         System.Threading.Tasks.Task<ApiResponse<SnapshotResponses>> GetMessageSnapshotsAsyncWithHttpInfo (string sdids, bool? includeTimestamp = null);
         /// <summary>
+        /// Get Normalized Actions
+        /// </summary>
+        /// <remarks>
+        /// Get the actions normalized
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
+        /// <param name="ddid">Destination device ID of the actions being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
+        /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
+        /// <param name="count">count (optional)</param>
+        /// <param name="startDate">startDate (optional)</param>
+        /// <param name="endDate">endDate (optional)</param>
+        /// <param name="order">Desired sort order: &#39;asc&#39; or &#39;desc&#39; (optional)</param>
+        /// <returns>Task of NormalizedActionsEnvelope</returns>
+        System.Threading.Tasks.Task<NormalizedActionsEnvelope> GetNormalizedActionsAsync (string uid = null, string ddid = null, string mid = null, string offset = null, int? count = null, long? startDate = null, long? endDate = null, string order = null);
+
+        /// <summary>
+        /// Get Normalized Actions
+        /// </summary>
+        /// <remarks>
+        /// Get the actions normalized
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
+        /// <param name="ddid">Destination device ID of the actions being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
+        /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
+        /// <param name="count">count (optional)</param>
+        /// <param name="startDate">startDate (optional)</param>
+        /// <param name="endDate">endDate (optional)</param>
+        /// <param name="order">Desired sort order: &#39;asc&#39; or &#39;desc&#39; (optional)</param>
+        /// <returns>Task of ApiResponse (NormalizedActionsEnvelope)</returns>
+        System.Threading.Tasks.Task<ApiResponse<NormalizedActionsEnvelope>> GetNormalizedActionsAsyncWithHttpInfo (string uid = null, string ddid = null, string mid = null, string offset = null, int? count = null, long? startDate = null, long? endDate = null, string order = null);
+        /// <summary>
         /// Get Normalized Messages
         /// </summary>
         /// <remarks>
@@ -373,7 +464,7 @@ namespace CLOUD.Artik.Api
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
         /// <param name="sdid">Source device ID of the messages being searched. (optional)</param>
-        /// <param name="mid">The SAMI message ID being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
         /// <param name="fieldPresence">String representing a field from the specified device ID. (optional)</param>
         /// <param name="filter">Filter. (optional)</param>
         /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
@@ -393,7 +484,7 @@ namespace CLOUD.Artik.Api
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
         /// <param name="sdid">Source device ID of the messages being searched. (optional)</param>
-        /// <param name="mid">The SAMI message ID being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
         /// <param name="fieldPresence">String representing a field from the specified device ID. (optional)</param>
         /// <param name="filter">Filter. (optional)</param>
         /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
@@ -404,26 +495,47 @@ namespace CLOUD.Artik.Api
         /// <returns>Task of ApiResponse (NormalizedMessagesEnvelope)</returns>
         System.Threading.Tasks.Task<ApiResponse<NormalizedMessagesEnvelope>> GetNormalizedMessagesAsyncWithHttpInfo (string uid = null, string sdid = null, string mid = null, string fieldPresence = null, string filter = null, string offset = null, int? count = null, long? startDate = null, long? endDate = null, string order = null);
         /// <summary>
-        /// Send Message Action
+        /// Send Actions
         /// </summary>
         /// <remarks>
-        /// (Deprecated) Send a message or an Action:&lt;br/&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Combination&lt;/th&gt;&lt;th&gt;Parameters&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Message&lt;/td&gt;&lt;td&gt;sdid, type&#x3D;message&lt;/td&gt;&lt;td&gt;Send a message from a Source Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Action&lt;/td&gt;&lt;td&gt;ddid, type&#x3D;action&lt;/td&gt;&lt;td&gt;Send an action to a Destination Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Common&lt;/td&gt;&lt;td&gt;data, ts, token&lt;/td&gt;&lt;td&gt;Parameters that can be used with the above combinations.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        /// Send Actions
         /// </remarks>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="data">Message or Action object that is passed in the body</param>
+        /// <param name="data">Actions that are passed in the body</param>
         /// <returns>Task of MessageIDEnvelope</returns>
-        System.Threading.Tasks.Task<MessageIDEnvelope> SendMessageActionAsync (MessageAction data);
+        System.Threading.Tasks.Task<MessageIDEnvelope> SendActionsAsync (Actions data);
 
         /// <summary>
-        /// Send Message Action
+        /// Send Actions
         /// </summary>
         /// <remarks>
-        /// (Deprecated) Send a message or an Action:&lt;br/&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Combination&lt;/th&gt;&lt;th&gt;Parameters&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Message&lt;/td&gt;&lt;td&gt;sdid, type&#x3D;message&lt;/td&gt;&lt;td&gt;Send a message from a Source Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Action&lt;/td&gt;&lt;td&gt;ddid, type&#x3D;action&lt;/td&gt;&lt;td&gt;Send an action to a Destination Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Common&lt;/td&gt;&lt;td&gt;data, ts, token&lt;/td&gt;&lt;td&gt;Parameters that can be used with the above combinations.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        /// Send Actions
         /// </remarks>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="data">Message or Action object that is passed in the body</param>
+        /// <param name="data">Actions that are passed in the body</param>
         /// <returns>Task of ApiResponse (MessageIDEnvelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MessageIDEnvelope>> SendMessageActionAsyncWithHttpInfo (MessageAction data);
+        System.Threading.Tasks.Task<ApiResponse<MessageIDEnvelope>> SendActionsAsyncWithHttpInfo (Actions data);
+        /// <summary>
+        /// Send Message
+        /// </summary>
+        /// <remarks>
+        /// Send a message
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="data">Message object that is passed in the body</param>
+        /// <returns>Task of MessageIDEnvelope</returns>
+        System.Threading.Tasks.Task<MessageIDEnvelope> SendMessageAsync (Message data);
+
+        /// <summary>
+        /// Send Message
+        /// </summary>
+        /// <remarks>
+        /// Send a message
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="data">Message object that is passed in the body</param>
+        /// <returns>Task of ApiResponse (MessageIDEnvelope)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MessageIDEnvelope>> SendMessageAsyncWithHttpInfo (Message data);
         #endregion Asynchronous Operations
     }
 
@@ -1416,12 +1528,201 @@ namespace CLOUD.Artik.Api
         }
 
         /// <summary>
+        /// Get Normalized Actions Get the actions normalized
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
+        /// <param name="ddid">Destination device ID of the actions being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
+        /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
+        /// <param name="count">count (optional)</param>
+        /// <param name="startDate">startDate (optional)</param>
+        /// <param name="endDate">endDate (optional)</param>
+        /// <param name="order">Desired sort order: &#39;asc&#39; or &#39;desc&#39; (optional)</param>
+        /// <returns>NormalizedActionsEnvelope</returns>
+        public NormalizedActionsEnvelope GetNormalizedActions (string uid = null, string ddid = null, string mid = null, string offset = null, int? count = null, long? startDate = null, long? endDate = null, string order = null)
+        {
+             ApiResponse<NormalizedActionsEnvelope> localVarResponse = GetNormalizedActionsWithHttpInfo(uid, ddid, mid, offset, count, startDate, endDate, order);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Normalized Actions Get the actions normalized
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
+        /// <param name="ddid">Destination device ID of the actions being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
+        /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
+        /// <param name="count">count (optional)</param>
+        /// <param name="startDate">startDate (optional)</param>
+        /// <param name="endDate">endDate (optional)</param>
+        /// <param name="order">Desired sort order: &#39;asc&#39; or &#39;desc&#39; (optional)</param>
+        /// <returns>ApiResponse of NormalizedActionsEnvelope</returns>
+        public ApiResponse< NormalizedActionsEnvelope > GetNormalizedActionsWithHttpInfo (string uid = null, string ddid = null, string mid = null, string offset = null, int? count = null, long? startDate = null, long? endDate = null, string order = null)
+        {
+
+            var localVarPath = "/actions";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (uid != null) localVarQueryParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // query parameter
+            if (ddid != null) localVarQueryParams.Add("ddid", Configuration.ApiClient.ParameterToString(ddid)); // query parameter
+            if (mid != null) localVarQueryParams.Add("mid", Configuration.ApiClient.ParameterToString(mid)); // query parameter
+            if (offset != null) localVarQueryParams.Add("offset", Configuration.ApiClient.ParameterToString(offset)); // query parameter
+            if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
+            if (startDate != null) localVarQueryParams.Add("startDate", Configuration.ApiClient.ParameterToString(startDate)); // query parameter
+            if (endDate != null) localVarQueryParams.Add("endDate", Configuration.ApiClient.ParameterToString(endDate)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+
+            // authentication (artikcloud_oauth) required
+            // oauth required
+            if (!String.IsNullOrEmpty(Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetNormalizedActions", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<NormalizedActionsEnvelope>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (NormalizedActionsEnvelope) Configuration.ApiClient.Deserialize(localVarResponse, typeof(NormalizedActionsEnvelope)));
+            
+        }
+
+        /// <summary>
+        /// Get Normalized Actions Get the actions normalized
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
+        /// <param name="ddid">Destination device ID of the actions being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
+        /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
+        /// <param name="count">count (optional)</param>
+        /// <param name="startDate">startDate (optional)</param>
+        /// <param name="endDate">endDate (optional)</param>
+        /// <param name="order">Desired sort order: &#39;asc&#39; or &#39;desc&#39; (optional)</param>
+        /// <returns>Task of NormalizedActionsEnvelope</returns>
+        public async System.Threading.Tasks.Task<NormalizedActionsEnvelope> GetNormalizedActionsAsync (string uid = null, string ddid = null, string mid = null, string offset = null, int? count = null, long? startDate = null, long? endDate = null, string order = null)
+        {
+             ApiResponse<NormalizedActionsEnvelope> localVarResponse = await GetNormalizedActionsAsyncWithHttpInfo(uid, ddid, mid, offset, count, startDate, endDate, order);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get Normalized Actions Get the actions normalized
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
+        /// <param name="ddid">Destination device ID of the actions being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
+        /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
+        /// <param name="count">count (optional)</param>
+        /// <param name="startDate">startDate (optional)</param>
+        /// <param name="endDate">endDate (optional)</param>
+        /// <param name="order">Desired sort order: &#39;asc&#39; or &#39;desc&#39; (optional)</param>
+        /// <returns>Task of ApiResponse (NormalizedActionsEnvelope)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<NormalizedActionsEnvelope>> GetNormalizedActionsAsyncWithHttpInfo (string uid = null, string ddid = null, string mid = null, string offset = null, int? count = null, long? startDate = null, long? endDate = null, string order = null)
+        {
+
+            var localVarPath = "/actions";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (uid != null) localVarQueryParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // query parameter
+            if (ddid != null) localVarQueryParams.Add("ddid", Configuration.ApiClient.ParameterToString(ddid)); // query parameter
+            if (mid != null) localVarQueryParams.Add("mid", Configuration.ApiClient.ParameterToString(mid)); // query parameter
+            if (offset != null) localVarQueryParams.Add("offset", Configuration.ApiClient.ParameterToString(offset)); // query parameter
+            if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
+            if (startDate != null) localVarQueryParams.Add("startDate", Configuration.ApiClient.ParameterToString(startDate)); // query parameter
+            if (endDate != null) localVarQueryParams.Add("endDate", Configuration.ApiClient.ParameterToString(endDate)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+
+            // authentication (artikcloud_oauth) required
+            // oauth required
+            if (!String.IsNullOrEmpty(Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetNormalizedActions", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<NormalizedActionsEnvelope>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (NormalizedActionsEnvelope) Configuration.ApiClient.Deserialize(localVarResponse, typeof(NormalizedActionsEnvelope)));
+            
+        }
+
+        /// <summary>
         /// Get Normalized Messages Get the messages normalized
         /// </summary>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
         /// <param name="sdid">Source device ID of the messages being searched. (optional)</param>
-        /// <param name="mid">The SAMI message ID being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
         /// <param name="fieldPresence">String representing a field from the specified device ID. (optional)</param>
         /// <param name="filter">Filter. (optional)</param>
         /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
@@ -1442,7 +1743,7 @@ namespace CLOUD.Artik.Api
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
         /// <param name="sdid">Source device ID of the messages being searched. (optional)</param>
-        /// <param name="mid">The SAMI message ID being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
         /// <param name="fieldPresence">String representing a field from the specified device ID. (optional)</param>
         /// <param name="filter">Filter. (optional)</param>
         /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
@@ -1521,7 +1822,7 @@ namespace CLOUD.Artik.Api
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
         /// <param name="sdid">Source device ID of the messages being searched. (optional)</param>
-        /// <param name="mid">The SAMI message ID being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
         /// <param name="fieldPresence">String representing a field from the specified device ID. (optional)</param>
         /// <param name="filter">Filter. (optional)</param>
         /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
@@ -1543,7 +1844,7 @@ namespace CLOUD.Artik.Api
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uid">User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)</param>
         /// <param name="sdid">Source device ID of the messages being searched. (optional)</param>
-        /// <param name="mid">The SAMI message ID being searched. (optional)</param>
+        /// <param name="mid">The message ID being searched. (optional)</param>
         /// <param name="fieldPresence">String representing a field from the specified device ID. (optional)</param>
         /// <param name="filter">Filter. (optional)</param>
         /// <param name="offset">A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)</param>
@@ -1617,28 +1918,195 @@ namespace CLOUD.Artik.Api
         }
 
         /// <summary>
-        /// Send Message Action (Deprecated) Send a message or an Action:&lt;br/&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Combination&lt;/th&gt;&lt;th&gt;Parameters&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Message&lt;/td&gt;&lt;td&gt;sdid, type&#x3D;message&lt;/td&gt;&lt;td&gt;Send a message from a Source Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Action&lt;/td&gt;&lt;td&gt;ddid, type&#x3D;action&lt;/td&gt;&lt;td&gt;Send an action to a Destination Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Common&lt;/td&gt;&lt;td&gt;data, ts, token&lt;/td&gt;&lt;td&gt;Parameters that can be used with the above combinations.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        /// Send Actions Send Actions
         /// </summary>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="data">Message or Action object that is passed in the body</param>
+        /// <param name="data">Actions that are passed in the body</param>
         /// <returns>MessageIDEnvelope</returns>
-        public MessageIDEnvelope SendMessageAction (MessageAction data)
+        public MessageIDEnvelope SendActions (Actions data)
         {
-             ApiResponse<MessageIDEnvelope> localVarResponse = SendMessageActionWithHttpInfo(data);
+             ApiResponse<MessageIDEnvelope> localVarResponse = SendActionsWithHttpInfo(data);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Send Message Action (Deprecated) Send a message or an Action:&lt;br/&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Combination&lt;/th&gt;&lt;th&gt;Parameters&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Message&lt;/td&gt;&lt;td&gt;sdid, type&#x3D;message&lt;/td&gt;&lt;td&gt;Send a message from a Source Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Action&lt;/td&gt;&lt;td&gt;ddid, type&#x3D;action&lt;/td&gt;&lt;td&gt;Send an action to a Destination Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Common&lt;/td&gt;&lt;td&gt;data, ts, token&lt;/td&gt;&lt;td&gt;Parameters that can be used with the above combinations.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        /// Send Actions Send Actions
         /// </summary>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="data">Message or Action object that is passed in the body</param>
+        /// <param name="data">Actions that are passed in the body</param>
         /// <returns>ApiResponse of MessageIDEnvelope</returns>
-        public ApiResponse< MessageIDEnvelope > SendMessageActionWithHttpInfo (MessageAction data)
+        public ApiResponse< MessageIDEnvelope > SendActionsWithHttpInfo (Actions data)
         {
             // verify the required parameter 'data' is set
             if (data == null)
-                throw new ApiException(400, "Missing required parameter 'data' when calling MessagesApi->SendMessageAction");
+                throw new ApiException(400, "Missing required parameter 'data' when calling MessagesApi->SendActions");
+
+            var localVarPath = "/actions";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (data != null && data.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(data); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = data; // byte array
+            }
+
+            // authentication (artikcloud_oauth) required
+            // oauth required
+            if (!String.IsNullOrEmpty(Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("SendActions", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<MessageIDEnvelope>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (MessageIDEnvelope) Configuration.ApiClient.Deserialize(localVarResponse, typeof(MessageIDEnvelope)));
+            
+        }
+
+        /// <summary>
+        /// Send Actions Send Actions
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="data">Actions that are passed in the body</param>
+        /// <returns>Task of MessageIDEnvelope</returns>
+        public async System.Threading.Tasks.Task<MessageIDEnvelope> SendActionsAsync (Actions data)
+        {
+             ApiResponse<MessageIDEnvelope> localVarResponse = await SendActionsAsyncWithHttpInfo(data);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Send Actions Send Actions
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="data">Actions that are passed in the body</param>
+        /// <returns>Task of ApiResponse (MessageIDEnvelope)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<MessageIDEnvelope>> SendActionsAsyncWithHttpInfo (Actions data)
+        {
+            // verify the required parameter 'data' is set
+            if (data == null)
+                throw new ApiException(400, "Missing required parameter 'data' when calling MessagesApi->SendActions");
+
+            var localVarPath = "/actions";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (data != null && data.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(data); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = data; // byte array
+            }
+
+            // authentication (artikcloud_oauth) required
+            // oauth required
+            if (!String.IsNullOrEmpty(Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("SendActions", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<MessageIDEnvelope>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (MessageIDEnvelope) Configuration.ApiClient.Deserialize(localVarResponse, typeof(MessageIDEnvelope)));
+            
+        }
+
+        /// <summary>
+        /// Send Message Send a message
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="data">Message object that is passed in the body</param>
+        /// <returns>MessageIDEnvelope</returns>
+        public MessageIDEnvelope SendMessage (Message data)
+        {
+             ApiResponse<MessageIDEnvelope> localVarResponse = SendMessageWithHttpInfo(data);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Send Message Send a message
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="data">Message object that is passed in the body</param>
+        /// <returns>ApiResponse of MessageIDEnvelope</returns>
+        public ApiResponse< MessageIDEnvelope > SendMessageWithHttpInfo (Message data)
+        {
+            // verify the required parameter 'data' is set
+            if (data == null)
+                throw new ApiException(400, "Missing required parameter 'data' when calling MessagesApi->SendMessage");
 
             var localVarPath = "/messages";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1689,7 +2157,7 @@ namespace CLOUD.Artik.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SendMessageAction", localVarResponse);
+                Exception exception = ExceptionFactory("SendMessage", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1700,29 +2168,29 @@ namespace CLOUD.Artik.Api
         }
 
         /// <summary>
-        /// Send Message Action (Deprecated) Send a message or an Action:&lt;br/&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Combination&lt;/th&gt;&lt;th&gt;Parameters&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Message&lt;/td&gt;&lt;td&gt;sdid, type&#x3D;message&lt;/td&gt;&lt;td&gt;Send a message from a Source Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Action&lt;/td&gt;&lt;td&gt;ddid, type&#x3D;action&lt;/td&gt;&lt;td&gt;Send an action to a Destination Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Common&lt;/td&gt;&lt;td&gt;data, ts, token&lt;/td&gt;&lt;td&gt;Parameters that can be used with the above combinations.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        /// Send Message Send a message
         /// </summary>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="data">Message or Action object that is passed in the body</param>
+        /// <param name="data">Message object that is passed in the body</param>
         /// <returns>Task of MessageIDEnvelope</returns>
-        public async System.Threading.Tasks.Task<MessageIDEnvelope> SendMessageActionAsync (MessageAction data)
+        public async System.Threading.Tasks.Task<MessageIDEnvelope> SendMessageAsync (Message data)
         {
-             ApiResponse<MessageIDEnvelope> localVarResponse = await SendMessageActionAsyncWithHttpInfo(data);
+             ApiResponse<MessageIDEnvelope> localVarResponse = await SendMessageAsyncWithHttpInfo(data);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Send Message Action (Deprecated) Send a message or an Action:&lt;br/&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Combination&lt;/th&gt;&lt;th&gt;Parameters&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Message&lt;/td&gt;&lt;td&gt;sdid, type&#x3D;message&lt;/td&gt;&lt;td&gt;Send a message from a Source Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Action&lt;/td&gt;&lt;td&gt;ddid, type&#x3D;action&lt;/td&gt;&lt;td&gt;Send an action to a Destination Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Common&lt;/td&gt;&lt;td&gt;data, ts, token&lt;/td&gt;&lt;td&gt;Parameters that can be used with the above combinations.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        /// Send Message Send a message
         /// </summary>
         /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="data">Message or Action object that is passed in the body</param>
+        /// <param name="data">Message object that is passed in the body</param>
         /// <returns>Task of ApiResponse (MessageIDEnvelope)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<MessageIDEnvelope>> SendMessageActionAsyncWithHttpInfo (MessageAction data)
+        public async System.Threading.Tasks.Task<ApiResponse<MessageIDEnvelope>> SendMessageAsyncWithHttpInfo (Message data)
         {
             // verify the required parameter 'data' is set
             if (data == null)
-                throw new ApiException(400, "Missing required parameter 'data' when calling MessagesApi->SendMessageAction");
+                throw new ApiException(400, "Missing required parameter 'data' when calling MessagesApi->SendMessage");
 
             var localVarPath = "/messages";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1773,7 +2241,7 @@ namespace CLOUD.Artik.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SendMessageAction", localVarResponse);
+                Exception exception = ExceptionFactory("SendMessage", localVarResponse);
                 if (exception != null) throw exception;
             }
 
