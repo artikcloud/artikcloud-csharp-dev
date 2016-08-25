@@ -1,5 +1,6 @@
-#ARTIK Cloud C# SDK
-==========================
+ARTIK Cloud C# SDK
+==================
+[![Build Status](https://travis-ci.org/artikcloud/artikcloud-csharp.svg?branch=master)](https://travis-ci.org/artikcloud/artikcloud-csharp)
 
 This SDK helps you connect your C# applications to ARTIK Cloud. It exposes a number of methods to easily execute REST API calls to ARTIK Cloud.
 
