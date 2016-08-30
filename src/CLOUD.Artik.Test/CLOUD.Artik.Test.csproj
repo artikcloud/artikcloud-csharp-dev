@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
 ARTIK Cloud API
 
@@ -59,36 +59,54 @@ limitations under the License.
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="Newtonsoft.Json">
-        <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-        <HintPath Condition="Exists('..\packages')">..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-        <HintPath Condition="Exists('..\..\packages')">..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-        <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath Condition="Exists('..\packages')">..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath Condition="Exists('..\..\packages')">..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
-        <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
-        <HintPath Condition="Exists('..\packages')">..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
-        <HintPath Condition="Exists('..\..\packages')">..\..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
-        <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+      <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+      <HintPath Condition="Exists('..\packages')">..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+      <HintPath Condition="Exists('..\..\packages')">..\..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+      <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-        <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-        <HintPath Condition="Exists('..\packages')">..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-        <HintPath Condition="Exists('..\..\packages')">..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-        <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath Condition="Exists('..\packages')">..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath Condition="Exists('..\..\packages')">..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs"/>
+    <Compile Include="Api\ArtikCloudApiTest.cs" />
+    <Compile Include="Api\DevicesApiTests.cs" />
+    <Compile Include="Api\DeviceTypesApiTests.cs" />
+    <Compile Include="Api\ExportApiTests.cs" />
+    <Compile Include="Api\MessagesApiTests.cs" />
+    <Compile Include="Api\RegistrationsApiTests.cs" />
+    <Compile Include="Api\RulesApiTests.cs" />
+    <Compile Include="Api\TagsApiTests.cs" />
+    <Compile Include="Api\TokensApiTests.cs" />
+    <Compile Include="Api\UsersApiTests.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Utils\Properties.cs" />
   </ItemGroup>
   <ItemGroup>
-      <None Include="packages.config" />
+    <None Include="artik.properties">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-      <ProjectReference Include="..\CLOUD.Artik\CLOUD.Artik.csproj">
-          <Project>{EA3106F6-E073-4FD8-B7BE-C1C3A1F15C98}</Project>
-          <Name>CLOUD.Artik</Name>
-      </ProjectReference>
+    <ProjectReference Include="..\CLOUD.Artik\CLOUD.Artik.csproj">
+      <Project>{EA3106F6-E073-4FD8-B7BE-C1C3A1F15C98}</Project>
+      <Name>CLOUD.Artik</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
 </Project>
-
