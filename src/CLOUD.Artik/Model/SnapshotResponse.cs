@@ -28,6 +28,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using CLOUD.Artik.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -54,6 +55,7 @@ namespace CLOUD.Artik.Model
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
+        [JsonConverter(typeof(DictionaryConverter))]
         public Dictionary<string, Object> Data { get; set; }
         /// <summary>
         /// Gets or Sets Sdid
