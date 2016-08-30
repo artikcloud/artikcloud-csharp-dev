@@ -71,17 +71,7 @@ namespace CLOUD.Artik.Test
         {
             instance = null;
         }
-
-        /// <summary>
-        /// Test an instance of MessagesApi
-        /// </summary>
-        [Test]
-        public void InstanceTest()
-        {
-            // TODO uncomment below to test 'IsInstanceOfType' MessagesApi
-            //Assert.IsInstanceOfType(typeof(MessagesApi), instance, "instance is a MessagesApi");
-        }
-
+        
         public static long GetCurrentUnixTimestampMillis()
         {
             return (long)(System.DateTime.UtcNow - UnixEpoch).TotalMilliseconds;
@@ -217,6 +207,9 @@ namespace CLOUD.Artik.Test
             Assert.AreEqual(500, steps);
         }
 
+        /// <summary>
+        /// Test SendActions
+        /// </summary>
         [Test]
         public void SendActionsTest()
         {
