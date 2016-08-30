@@ -165,7 +165,7 @@ namespace CLOUD.Artik.Test
 
             IDictionary<string, object> stepsInfo = (IDictionary<string, object>)env.Data[0].Data["steps"];
 
-            Assert.AreEqual(5.0f, stepsInfo["value"], "Steps must be 5");
+            Assert.AreEqual(500.0f, stepsInfo["value"], "Steps must be 500");
         }
 
         /// <summary>
