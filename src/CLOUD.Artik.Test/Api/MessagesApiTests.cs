@@ -20,7 +20,7 @@
  * limitations under the License.
  */
 
-using System;
+
 using System.IO;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,6 +32,9 @@ using NUnit.Framework;
 using CLOUD.Artik.Client;
 using CLOUD.Artik.Api;
 using CLOUD.Artik.Model;
+using System.Threading;
+using Action = CLOUD.Artik.Model.Action;
+using System;
 
 namespace CLOUD.Artik.Test
 {
@@ -43,7 +46,7 @@ namespace CLOUD.Artik.Test
     /// Please update the test case below to test the API endpoint.
     /// </remarks>
     [TestFixture]
-    public class MessagesApiTests
+    public class MessagesApiTests : ArtikCloudApiTest
     {
         private MessagesApi instance;
         private static readonly DateTime UnixEpoch =
@@ -55,9 +58,9 @@ namespace CLOUD.Artik.Test
         [SetUp]
         public void Init()
         {
-          String deviceToken = "dc43d12e2b59495daf94631e6ddfe3e8";
-          Configuration c1 = new Configuration (timeout: 10000, accessToken: deviceToken);
-          instance = new MessagesApi(c1);
+            String deviceToken = Properties["device1.token"];
+            Configuration config = new Configuration(timeout: 10000, accessToken: deviceToken);
+            instance = new MessagesApi(config);
         }
 
         /// <summary>
@@ -66,7 +69,7 @@ namespace CLOUD.Artik.Test
         [TearDown]
         public void Cleanup()
         {
-
+            instance = null;
         }
 
         /// <summary>
@@ -81,7 +84,7 @@ namespace CLOUD.Artik.Test
 
         public static long GetCurrentUnixTimestampMillis()
         {
-            return (long) (DateTime.UtcNow - UnixEpoch).TotalMilliseconds;
+            return (long)(System.DateTime.UtcNow - UnixEpoch).TotalMilliseconds;
         }
 
 
@@ -152,11 +155,17 @@ namespace CLOUD.Artik.Test
         [Test]
         public void GetMessageSnapshotsTest()
         {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string sdids = null;
-            //bool? includeTimestamp = null;
-            //var response = instance.GetMessageSnapshots(sdids, includeTimestamp);
-            //Assert.IsInstanceOf<SnapshotResponses> (response, "response is SnapshotResponses");
+            string sdids = Properties["device1.id"];
+
+            SnapshotResponses env = instance.GetMessageSnapshots(sdids, false);
+
+            Assert.AreEqual(sdids, env.Sdids, "SDIDs must match");
+
+            Assert.AreEqual(sdids, env.Data[0].Sdid, "SDID must match");
+
+            IDictionary<string, object> stepsInfo = (IDictionary<string, object>)env.Data[0].Data["steps"];
+
+            Assert.AreEqual(5.0f, stepsInfo["value"], "Steps must be 5");
         }
 
         /// <summary>
@@ -186,25 +195,67 @@ namespace CLOUD.Artik.Test
         [Test]
         public void SendMessageTest()
         {
-          Dictionary<String, Object> data = new Dictionary<String, Object> {{ "steps", 5}};
-          long milliseconds = GetCurrentUnixTimestampMillis();
+            Dictionary<string, object> data = new Dictionary<string, object> { { "steps", 500 } };
+            long milliseconds = GetCurrentUnixTimestampMillis();
+            string sdid = Properties["device1.id"];
 
-          Message message = new Message (Sdid: "19da42ee01414722a6ad1224097c38d4", Type: "Message", Data: data, Ts: milliseconds);
+            Message message = new Message(Sdid: sdid, Type: "Message", Data: data, Ts: milliseconds);
 
-          var response = instance.SendMessage(message);
-          var messageId = response.Data.Mid;
+            var response = instance.SendMessage(message);
+            var messageId = response.Data.Mid;
 
-          Assert.IsNotNull (messageId);
+            Assert.IsNotNull(messageId);
 
-          var normalizedMessageEnvelope = instance.GetNormalizedMessages(mid: messageId);
-          Assert.AreEqual(1, normalizedMessageEnvelope.Size);
+            var normalizedMessageEnvelope = instance.GetNormalizedMessages(mid: messageId);
+            Assert.AreEqual(1, normalizedMessageEnvelope.Size);
 
-          NormalizedMessage normalized = normalizedMessageEnvelope.Data[0];
-          Assert.AreEqual (messageId, normalized.Mid);
+            NormalizedMessage normalized = normalizedMessageEnvelope.Data[0];
+            Assert.AreEqual(messageId, normalized.Mid);
 
-          Object steps = normalized.Data["steps"];
-          Assert.IsNotNull(steps);
-          Assert.AreEqual(5, steps);
+            object steps = normalized.Data["steps"];
+            Assert.IsNotNull(steps);
+            Assert.AreEqual(500, steps);
+        }
+
+        [Test]
+        public void SendActionsTest()
+        {
+            string ddid = Properties["device4.id"];
+            string deviceToken = Properties["device4.token"];
+            Configuration config = new Configuration(timeout: 10000, accessToken: deviceToken);
+            MessagesApi newApi = new MessagesApi(config);
+
+            Action action = new Action();
+            action.Name = "setVolume";
+            action.Parameters = new Dictionary<string, object>();
+            action.Parameters.Add("volume", 5);
+            
+            ActionArray actionArray = new ActionArray();
+            actionArray.Actions = new List<Action>();
+            actionArray.Actions.Add(action);
+
+            Actions actions = new Actions();
+            actions.Ddid = ddid;
+            actions.Ts = GetCurrentUnixTimestampMillis();
+            actions.Data = actionArray;
+
+            string mid = newApi.SendActions(actions).Data.Mid;
+
+            // Wait 2 seconds for the message to be normalized. 2 seconds just to be
+            // safe, usually much faster.
+            Thread.Sleep(2000);
+
+            NormalizedActionsEnvelope envelope = newApi.GetNormalizedActions(null, null, mid, null, null, null, null, null);
+            Assert.AreEqual(1, envelope.Size);
+
+            NormalizedAction normalized = envelope.Data[0];
+            Action actionRx = normalized.Data.Actions[0];
+
+            Assert.AreEqual("setVolume", actionRx.Name);
+
+            object volume = actionRx.Parameters["volume"];
+            Assert.NotNull(volume, "Volume should not be null");
+            Assert.AreEqual(5, volume);
         }
 
     }

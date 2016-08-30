@@ -43,7 +43,7 @@ namespace CLOUD.Artik.Test
     /// Please update the test case below to test the API endpoint.
     /// </remarks>
     [TestFixture]
-    public class DevicesApiTests
+    public class DevicesApiTests : ArtikCloudApiTest
     {
         private DevicesApi instance;
 
@@ -53,7 +53,9 @@ namespace CLOUD.Artik.Test
         [SetUp]
         public void Init()
         {
-            instance = new DevicesApi();
+            string deviceToken = Properties["device1.token"];
+            Configuration config = new Configuration(timeout: 10000, accessToken: deviceToken);
+            instance = new DevicesApi(config);
         }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace CLOUD.Artik.Test
         [TearDown]
         public void Cleanup()
         {
-
+            instance = null;
         }
 
         /// <summary>
@@ -130,10 +132,12 @@ namespace CLOUD.Artik.Test
         [Test]
         public void GetDevicePresenceTest()
         {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string deviceId = null;
-            //var response = instance.GetDevicePresence(deviceId);
-            //Assert.IsInstanceOf<PresenceEnvelope> (response, "response is PresenceEnvelope");
+            string deviceId = Properties["device1.id"];
+            PresenceEnvelope response = instance.GetDevicePresence(deviceId);
+
+            Assert.AreEqual(deviceId, response.Sdid, "Sdids must match");
+            Assert.NotNull(response.Data.LastSeenOn, "lastSeenOn");
+            Assert.NotNull(response.Data.Connected, "connected");
         }
         
         /// <summary>
