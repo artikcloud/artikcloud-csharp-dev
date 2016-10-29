@@ -37,29 +37,31 @@ namespace CLOUD.Artik.Model
     /// 
     /// </summary>
     [DataContract]
-    public partial class SnapshotResponse :  IEquatable<SnapshotResponse>
+    public partial class TaskParameters :  IEquatable<TaskParameters>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SnapshotResponse" /> class.
+        /// Initializes a new instance of the <see cref="TaskParameters" /> class.
         /// </summary>
-        /// <param name="Data">Data.</param>
-        /// <param name="Sdid">Sdid.</param>
-        public SnapshotResponse(Dictionary<string, Object> Data = null, string Sdid = null)
+        /// <param name="ExpiresAfter">Expire time in seconds.</param>
+        /// <param name="Value">Value to write.</param>
+        public TaskParameters(int? ExpiresAfter = null, string Value = null)
         {
-            this.Data = Data;
-            this.Sdid = Sdid;
+            this.ExpiresAfter = ExpiresAfter;
+            this.Value = Value;
         }
         
         /// <summary>
-        /// Gets or Sets Data
+        /// Expire time in seconds
         /// </summary>
-        [DataMember(Name="data", EmitDefaultValue=false)]
-        public Dictionary<string, Object> Data { get; set; }
+        /// <value>Expire time in seconds</value>
+        [DataMember(Name="expiresAfter", EmitDefaultValue=false)]
+        public int? ExpiresAfter { get; set; }
         /// <summary>
-        /// Gets or Sets Sdid
+        /// Value to write
         /// </summary>
-        [DataMember(Name="sdid", EmitDefaultValue=false)]
-        public string Sdid { get; set; }
+        /// <value>Value to write</value>
+        [DataMember(Name="value", EmitDefaultValue=false)]
+        public string Value { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -67,9 +69,9 @@ namespace CLOUD.Artik.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class SnapshotResponse {\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  Sdid: ").Append(Sdid).Append("\n");
+            sb.Append("class TaskParameters {\n");
+            sb.Append("  ExpiresAfter: ").Append(ExpiresAfter).Append("\n");
+            sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -91,15 +93,15 @@ namespace CLOUD.Artik.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as SnapshotResponse);
+            return this.Equals(obj as TaskParameters);
         }
 
         /// <summary>
-        /// Returns true if SnapshotResponse instances are equal
+        /// Returns true if TaskParameters instances are equal
         /// </summary>
-        /// <param name="other">Instance of SnapshotResponse to be compared</param>
+        /// <param name="other">Instance of TaskParameters to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SnapshotResponse other)
+        public bool Equals(TaskParameters other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -107,14 +109,14 @@ namespace CLOUD.Artik.Model
 
             return 
                 (
-                    this.Data == other.Data ||
-                    this.Data != null &&
-                    this.Data.SequenceEqual(other.Data)
+                    this.ExpiresAfter == other.ExpiresAfter ||
+                    this.ExpiresAfter != null &&
+                    this.ExpiresAfter.Equals(other.ExpiresAfter)
                 ) && 
                 (
-                    this.Sdid == other.Sdid ||
-                    this.Sdid != null &&
-                    this.Sdid.Equals(other.Sdid)
+                    this.Value == other.Value ||
+                    this.Value != null &&
+                    this.Value.Equals(other.Value)
                 );
         }
 
@@ -129,10 +131,10 @@ namespace CLOUD.Artik.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Data != null)
-                    hash = hash * 59 + this.Data.GetHashCode();
-                if (this.Sdid != null)
-                    hash = hash * 59 + this.Sdid.GetHashCode();
+                if (this.ExpiresAfter != null)
+                    hash = hash * 59 + this.ExpiresAfter.GetHashCode();
+                if (this.Value != null)
+                    hash = hash * 59 + this.Value.GetHashCode();
                 return hash;
             }
         }

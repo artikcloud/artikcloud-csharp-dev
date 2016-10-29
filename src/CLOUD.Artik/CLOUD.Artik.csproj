@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 ARTIK Cloud API
 
@@ -24,7 +24,7 @@ limitations under the License.
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EA3106F6-E073-4FD8-B7BE-C1C3A1F15C98}</ProjectGuid>
+    <ProjectGuid>{A68477FF-32AD-4F39-9EB1-336B1420AA1E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CLOUD.Artik</RootNamespace>
@@ -65,124 +65,18 @@ limitations under the License.
       <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
-      <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
-      <HintPath Condition="Exists('..\packages')">..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
-      <HintPath Condition="Exists('..\..\packages')">..\..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+        <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+        <HintPath Condition="Exists('..\packages')">..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+        <HintPath Condition="Exists('..\..\packages')">..\..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
       <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\DevicesApi.cs" />
-    <Compile Include="Api\DeviceTypesApi.cs" />
-    <Compile Include="Api\ExportApi.cs" />
-    <Compile Include="Api\MessagesApi.cs" />
-    <Compile Include="Api\RegistrationsApi.cs" />
-    <Compile Include="Api\RulesApi.cs" />
-    <Compile Include="Api\TagsApi.cs" />
-    <Compile Include="Api\TokensApi.cs" />
-    <Compile Include="Api\UsersApi.cs" />
-    <Compile Include="Client\ApiClient.cs" />
-    <Compile Include="Client\ApiException.cs" />
-    <Compile Include="Client\ApiResponse.cs" />
-    <Compile Include="Client\Configuration.cs" />
-    <Compile Include="Client\ExceptionFactory.cs" />
-    <Compile Include="Client\IApiAccessor.cs" />
-    <Compile Include="Model\AckEnvelope.cs" />
-    <Compile Include="Model\Acknowledgement.cs" />
-    <Compile Include="Model\Action.cs" />
-    <Compile Include="Model\ActionArray.cs" />
-    <Compile Include="Model\ActionDetails.cs" />
-    <Compile Include="Model\ActionDetailsArray.cs" />
-    <Compile Include="Model\ActionIn.cs" />
-    <Compile Include="Model\ActionOut.cs" />
-    <Compile Include="Model\Actions.cs" />
-    <Compile Include="Model\AggregateData.cs" />
-    <Compile Include="Model\AggregatesHistogramData.cs" />
-    <Compile Include="Model\AggregatesHistogramResponse.cs" />
-    <Compile Include="Model\AggregatesResponse.cs" />
-    <Compile Include="Model\AppProperties.cs" />
-    <Compile Include="Model\CheckTokenMessage.cs" />
-    <Compile Include="Model\CheckTokenResponse.cs" />
-    <Compile Include="Model\Device.cs" />
-    <Compile Include="Model\DeviceArray.cs" />
-    <Compile Include="Model\DeviceEnvelope.cs" />
-    <Compile Include="Model\DeviceRegCompleteRequest.cs" />
-    <Compile Include="Model\DeviceRegConfirmUserRequest.cs" />
-    <Compile Include="Model\DeviceRegConfirmUserResponse.cs" />
-    <Compile Include="Model\DeviceRegConfirmUserResponseEnvelope.cs" />
-    <Compile Include="Model\DeviceRegStatusResponse.cs" />
-    <Compile Include="Model\DeviceRegStatusResponseEnvelope.cs" />
-    <Compile Include="Model\DevicesEnvelope.cs" />
-    <Compile Include="Model\DeviceToken.cs" />
-    <Compile Include="Model\DeviceTokenEnvelope.cs" />
-    <Compile Include="Model\DeviceType.cs" />
-    <Compile Include="Model\DeviceTypeArray.cs" />
-    <Compile Include="Model\DeviceTypeEnvelope.cs" />
-    <Compile Include="Model\DeviceTypesEnvelope.cs" />
-    <Compile Include="Model\ErrorEnvelope.cs" />
-    <Compile Include="Model\ExportData.cs" />
-    <Compile Include="Model\ExportDataArray.cs" />
-    <Compile Include="Model\ExportHistoryResponse.cs" />
-    <Compile Include="Model\ExportNormalizedMessagesResponse.cs" />
-    <Compile Include="Model\ExportRequest.cs" />
-    <Compile Include="Model\ExportRequestData.cs" />
-    <Compile Include="Model\ExportRequestInfo.cs" />
-    <Compile Include="Model\ExportRequestResponse.cs" />
-    <Compile Include="Model\ExportResponse.cs" />
-    <Compile Include="Model\ExportStatusResponse.cs" />
-    <Compile Include="Model\FieldPath.cs" />
-    <Compile Include="Model\FieldPresence.cs" />
-    <Compile Include="Model\FieldPresenceEnvelope.cs" />
-    <Compile Include="Model\FieldsActions.cs" />
-    <Compile Include="Model\ManifestProperties.cs" />
-    <Compile Include="Model\ManifestPropertiesEnvelope.cs" />
-    <Compile Include="Model\ManifestVersions.cs" />
-    <Compile Include="Model\ManifestVersionsEnvelope.cs" />
-    <Compile Include="Model\Message.cs" />
-    <Compile Include="Model\MessageAction.cs" />
-    <Compile Include="Model\MessageID.cs" />
-    <Compile Include="Model\MessageIDEnvelope.cs" />
-    <Compile Include="Model\MessageIn.cs" />
-    <Compile Include="Model\MessageOut.cs" />
-    <Compile Include="Model\NonEmptyString.cs" />
-    <Compile Include="Model\NormalizedAction.cs" />
-    <Compile Include="Model\NormalizedActionsEnvelope.cs" />
-    <Compile Include="Model\NormalizedMessage.cs" />
-    <Compile Include="Model\NormalizedMessagesEnvelope.cs" />
-    <Compile Include="Model\OutputRule.cs" />
-    <Compile Include="Model\PresenceEnvelope.cs" />
-    <Compile Include="Model\PresenceModel.cs" />
-    <Compile Include="Model\PropertiesEnvelope.cs" />
-    <Compile Include="Model\RefreshTokenResponse.cs" />
-    <Compile Include="Model\RegisterMessage.cs" />
-    <Compile Include="Model\RuleArray.cs" />
-    <Compile Include="Model\RuleCreationInfo.cs" />
-    <Compile Include="Model\RuleEnvelope.cs" />
-    <Compile Include="Model\RuleError.cs" />
-    <Compile Include="Model\RulesEnvelope.cs" />
-    <Compile Include="Model\RuleUpdateInfo.cs" />
-    <Compile Include="Model\RuleWarningOutput.cs" />
-    <Compile Include="Model\SnapshotResponse.cs" />
-    <Compile Include="Model\SnapshotResponses.cs" />
-    <Compile Include="Model\SnapshotsResponseEnvelope.cs" />
-    <Compile Include="Model\Tag.cs" />
-    <Compile Include="Model\TagArray.cs" />
-    <Compile Include="Model\TagsEnvelope.cs" />
-    <Compile Include="Model\Token.cs" />
-    <Compile Include="Model\TokenInfo.cs" />
-    <Compile Include="Model\TokenInfoSuccessResponse.cs" />
-    <Compile Include="Model\TokenRequest.cs" />
-    <Compile Include="Model\TokenResponse.cs" />
-    <Compile Include="Model\UnregisterDeviceResponse.cs" />
-    <Compile Include="Model\UnregisterDeviceResponseEnvelope.cs" />
-    <Compile Include="Model\User.cs" />
-    <Compile Include="Model\UserEnvelope.cs" />
-    <Compile Include="Model\WebSocketError.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\DictionaryConverter.cs" />
+    <Compile Include="**\*.cs"/>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+      <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
+

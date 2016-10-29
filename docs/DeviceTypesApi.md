@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**GetAvailableManifestVersions**](DeviceTypesApi.md#getavailablemanifestversions) | **GET** /devicetypes/{deviceTypeId}/availablemanifestversions | Get Available Manifest Versions
 [**GetDeviceType**](DeviceTypesApi.md#getdevicetype) | **GET** /devicetypes/{deviceTypeId} | Get Device Type
 [**GetDeviceTypes**](DeviceTypesApi.md#getdevicetypes) | **GET** /devicetypes | Get Device Types
+[**GetDeviceTypesByApplication**](DeviceTypesApi.md#getdevicetypesbyapplication) | **GET** /applications/{appId}/devicetypes | Get Device Types by Application
 [**GetLatestManifestProperties**](DeviceTypesApi.md#getlatestmanifestproperties) | **GET** /devicetypes/{deviceTypeId}/manifests/latest/properties | Get Latest Manifest Properties
 [**GetManifestProperties**](DeviceTypesApi.md#getmanifestproperties) | **GET** /devicetypes/{deviceTypeId}/manifests/{version}/properties | Get manifest properties
 
@@ -196,6 +197,77 @@ Name | Type | Description  | Notes
  **offset** | **int?**| Offset for pagination. | [optional] 
  **count** | **int?**| Desired count of items in the result set | [optional] 
  **tags** | **string**| Elements tagged with the list of tags. (comma separated) | [optional] 
+
+### Return type
+
+[**DeviceTypesEnvelope**](DeviceTypesEnvelope.md)
+
+### Authorization
+
+[artikcloud_oauth](../README.md#artikcloud_oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="getdevicetypesbyapplication"></a>
+# **GetDeviceTypesByApplication**
+> DeviceTypesEnvelope GetDeviceTypesByApplication (string appId, bool? productInfo = null, int? count = null, int? offset = null)
+
+Get Device Types by Application
+
+Get Device Types by Application
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using CLOUD.Artik.Api;
+using CLOUD.Artik.Client;
+using CLOUD.Artik.Model;
+
+namespace Example
+{
+    public class GetDeviceTypesByApplicationExample
+    {
+        public void main()
+        {
+            
+            // Configure OAuth2 access token for authorization: artikcloud_oauth
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new DeviceTypesApi();
+            var appId = appId_example;  // string | Application ID.
+            var productInfo = true;  // bool? | Flag to include the associated ProductInfo if present (optional) 
+            var count = 56;  // int? | Desired count of items in the result set. (optional) 
+            var offset = 56;  // int? | Offset for pagination. (optional) 
+
+            try
+            {
+                // Get Device Types by Application
+                DeviceTypesEnvelope result = apiInstance.GetDeviceTypesByApplication(appId, productInfo, count, offset);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DeviceTypesApi.GetDeviceTypesByApplication: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **appId** | **string**| Application ID. | 
+ **productInfo** | **bool?**| Flag to include the associated ProductInfo if present | [optional] 
+ **count** | **int?**| Desired count of items in the result set. | [optional] 
+ **offset** | **int?**| Offset for pagination. | [optional] 
 
 ### Return type
 

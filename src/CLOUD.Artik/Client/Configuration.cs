@@ -58,7 +58,7 @@ namespace CLOUD.Artik.Client
                              string tempFolderPath = null,
                              string dateTimeFormat = null,
                              int timeout = 100000,
-                             string userAgent = "Swagger-Codegen/2.0.5/csharp"
+                             string userAgent = "Swagger-Codegen/2.0.6/csharp"
                             )
         {
             setApiClientUsingDefault(apiClient);
@@ -93,7 +93,7 @@ namespace CLOUD.Artik.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "2.0.5";
+        public const string Version = "2.0.6";
 
         /// <summary>
         /// Gets or sets the default Configuration.
@@ -330,7 +330,7 @@ namespace CLOUD.Artik.Client
                      .GetReferencedAssemblies()
                      .Where(x => x.Name == "System.Core").First().Version.ToString()  + "\n";
             report += "    Version of the API: 2.0.0\n";
-            report += "    SDK Package Version: 2.0.5\n";
+            report += "    SDK Package Version: 2.0.6\n";
 
             return report;
         }

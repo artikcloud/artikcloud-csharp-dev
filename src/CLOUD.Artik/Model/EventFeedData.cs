@@ -34,32 +34,42 @@ using Newtonsoft.Json.Converters;
 namespace CLOUD.Artik.Model
 {
     /// <summary>
-    /// 
+    /// WebSocket Event Feed
     /// </summary>
     [DataContract]
-    public partial class SnapshotResponse :  IEquatable<SnapshotResponse>
+    public partial class EventFeedData :  IEquatable<EventFeedData>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SnapshotResponse" /> class.
+        /// Initializes a new instance of the <see cref="EventFeedData" /> class.
         /// </summary>
-        /// <param name="Data">Data.</param>
-        /// <param name="Sdid">Sdid.</param>
-        public SnapshotResponse(Dictionary<string, Object> Data = null, string Sdid = null)
+        /// <param name="_Event">Event.</param>
+        /// <param name="Ts">Timestamp.</param>
+        /// <param name="Data">Message Payload.</param>
+        public EventFeedData(string _Event = null, long? Ts = null, Dictionary<string, Object> Data = null)
         {
+            this._Event = _Event;
+            this.Ts = Ts;
             this.Data = Data;
-            this.Sdid = Sdid;
         }
         
         /// <summary>
-        /// Gets or Sets Data
+        /// Event
         /// </summary>
+        /// <value>Event</value>
+        [DataMember(Name="event", EmitDefaultValue=false)]
+        public string _Event { get; set; }
+        /// <summary>
+        /// Timestamp
+        /// </summary>
+        /// <value>Timestamp</value>
+        [DataMember(Name="ts", EmitDefaultValue=false)]
+        public long? Ts { get; set; }
+        /// <summary>
+        /// Message Payload
+        /// </summary>
+        /// <value>Message Payload</value>
         [DataMember(Name="data", EmitDefaultValue=false)]
         public Dictionary<string, Object> Data { get; set; }
-        /// <summary>
-        /// Gets or Sets Sdid
-        /// </summary>
-        [DataMember(Name="sdid", EmitDefaultValue=false)]
-        public string Sdid { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -67,9 +77,10 @@ namespace CLOUD.Artik.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class SnapshotResponse {\n");
+            sb.Append("class EventFeedData {\n");
+            sb.Append("  _Event: ").Append(_Event).Append("\n");
+            sb.Append("  Ts: ").Append(Ts).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  Sdid: ").Append(Sdid).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -91,15 +102,15 @@ namespace CLOUD.Artik.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as SnapshotResponse);
+            return this.Equals(obj as EventFeedData);
         }
 
         /// <summary>
-        /// Returns true if SnapshotResponse instances are equal
+        /// Returns true if EventFeedData instances are equal
         /// </summary>
-        /// <param name="other">Instance of SnapshotResponse to be compared</param>
+        /// <param name="other">Instance of EventFeedData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SnapshotResponse other)
+        public bool Equals(EventFeedData other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -107,14 +118,19 @@ namespace CLOUD.Artik.Model
 
             return 
                 (
+                    this._Event == other._Event ||
+                    this._Event != null &&
+                    this._Event.Equals(other._Event)
+                ) && 
+                (
+                    this.Ts == other.Ts ||
+                    this.Ts != null &&
+                    this.Ts.Equals(other.Ts)
+                ) && 
+                (
                     this.Data == other.Data ||
                     this.Data != null &&
                     this.Data.SequenceEqual(other.Data)
-                ) && 
-                (
-                    this.Sdid == other.Sdid ||
-                    this.Sdid != null &&
-                    this.Sdid.Equals(other.Sdid)
                 );
         }
 
@@ -129,10 +145,12 @@ namespace CLOUD.Artik.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                if (this._Event != null)
+                    hash = hash * 59 + this._Event.GetHashCode();
+                if (this.Ts != null)
+                    hash = hash * 59 + this.Ts.GetHashCode();
                 if (this.Data != null)
                     hash = hash * 59 + this.Data.GetHashCode();
-                if (this.Sdid != null)
-                    hash = hash * 59 + this.Sdid.GetHashCode();
                 return hash;
             }
         }

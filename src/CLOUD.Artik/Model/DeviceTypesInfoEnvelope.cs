@@ -37,29 +37,22 @@ namespace CLOUD.Artik.Model
     /// 
     /// </summary>
     [DataContract]
-    public partial class SnapshotResponse :  IEquatable<SnapshotResponse>
+    public partial class DeviceTypesInfoEnvelope :  IEquatable<DeviceTypesInfoEnvelope>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SnapshotResponse" /> class.
+        /// Initializes a new instance of the <see cref="DeviceTypesInfoEnvelope" /> class.
         /// </summary>
         /// <param name="Data">Data.</param>
-        /// <param name="Sdid">Sdid.</param>
-        public SnapshotResponse(Dictionary<string, Object> Data = null, string Sdid = null)
+        public DeviceTypesInfoEnvelope(DeviceTypesInfo Data = null)
         {
             this.Data = Data;
-            this.Sdid = Sdid;
         }
         
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public Dictionary<string, Object> Data { get; set; }
-        /// <summary>
-        /// Gets or Sets Sdid
-        /// </summary>
-        [DataMember(Name="sdid", EmitDefaultValue=false)]
-        public string Sdid { get; set; }
+        public DeviceTypesInfo Data { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -67,9 +60,8 @@ namespace CLOUD.Artik.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class SnapshotResponse {\n");
+            sb.Append("class DeviceTypesInfoEnvelope {\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  Sdid: ").Append(Sdid).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -91,15 +83,15 @@ namespace CLOUD.Artik.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as SnapshotResponse);
+            return this.Equals(obj as DeviceTypesInfoEnvelope);
         }
 
         /// <summary>
-        /// Returns true if SnapshotResponse instances are equal
+        /// Returns true if DeviceTypesInfoEnvelope instances are equal
         /// </summary>
-        /// <param name="other">Instance of SnapshotResponse to be compared</param>
+        /// <param name="other">Instance of DeviceTypesInfoEnvelope to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SnapshotResponse other)
+        public bool Equals(DeviceTypesInfoEnvelope other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -109,12 +101,7 @@ namespace CLOUD.Artik.Model
                 (
                     this.Data == other.Data ||
                     this.Data != null &&
-                    this.Data.SequenceEqual(other.Data)
-                ) && 
-                (
-                    this.Sdid == other.Sdid ||
-                    this.Sdid != null &&
-                    this.Sdid.Equals(other.Sdid)
+                    this.Data.Equals(other.Data)
                 );
         }
 
@@ -131,8 +118,6 @@ namespace CLOUD.Artik.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Data != null)
                     hash = hash * 59 + this.Data.GetHashCode();
-                if (this.Sdid != null)
-                    hash = hash * 59 + this.Sdid.GetHashCode();
                 return hash;
             }
         }

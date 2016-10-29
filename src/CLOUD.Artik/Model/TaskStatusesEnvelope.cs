@@ -37,29 +37,47 @@ namespace CLOUD.Artik.Model
     /// 
     /// </summary>
     [DataContract]
-    public partial class SnapshotResponse :  IEquatable<SnapshotResponse>
+    public partial class TaskStatusesEnvelope :  IEquatable<TaskStatusesEnvelope>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SnapshotResponse" /> class.
+        /// Initializes a new instance of the <see cref="TaskStatusesEnvelope" /> class.
         /// </summary>
-        /// <param name="Data">Data.</param>
-        /// <param name="Sdid">Sdid.</param>
-        public SnapshotResponse(Dictionary<string, Object> Data = null, string Sdid = null)
+        /// <param name="Total">Total.</param>
+        /// <param name="Data">Task statuses.</param>
+        /// <param name="Offset">Offset.</param>
+        /// <param name="Count">Count.</param>
+        public TaskStatusesEnvelope(int? Total = null, TaskStatuses Data = null, int? Offset = null, int? Count = null)
         {
+            this.Total = Total;
             this.Data = Data;
-            this.Sdid = Sdid;
+            this.Offset = Offset;
+            this.Count = Count;
         }
         
         /// <summary>
-        /// Gets or Sets Data
+        /// Total
         /// </summary>
-        [DataMember(Name="data", EmitDefaultValue=false)]
-        public Dictionary<string, Object> Data { get; set; }
+        /// <value>Total</value>
+        [DataMember(Name="total", EmitDefaultValue=false)]
+        public int? Total { get; set; }
         /// <summary>
-        /// Gets or Sets Sdid
+        /// Task statuses
         /// </summary>
-        [DataMember(Name="sdid", EmitDefaultValue=false)]
-        public string Sdid { get; set; }
+        /// <value>Task statuses</value>
+        [DataMember(Name="data", EmitDefaultValue=false)]
+        public TaskStatuses Data { get; set; }
+        /// <summary>
+        /// Offset
+        /// </summary>
+        /// <value>Offset</value>
+        [DataMember(Name="offset", EmitDefaultValue=false)]
+        public int? Offset { get; set; }
+        /// <summary>
+        /// Count
+        /// </summary>
+        /// <value>Count</value>
+        [DataMember(Name="count", EmitDefaultValue=false)]
+        public int? Count { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -67,9 +85,11 @@ namespace CLOUD.Artik.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class SnapshotResponse {\n");
+            sb.Append("class TaskStatusesEnvelope {\n");
+            sb.Append("  Total: ").Append(Total).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  Sdid: ").Append(Sdid).Append("\n");
+            sb.Append("  Offset: ").Append(Offset).Append("\n");
+            sb.Append("  Count: ").Append(Count).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -91,15 +111,15 @@ namespace CLOUD.Artik.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as SnapshotResponse);
+            return this.Equals(obj as TaskStatusesEnvelope);
         }
 
         /// <summary>
-        /// Returns true if SnapshotResponse instances are equal
+        /// Returns true if TaskStatusesEnvelope instances are equal
         /// </summary>
-        /// <param name="other">Instance of SnapshotResponse to be compared</param>
+        /// <param name="other">Instance of TaskStatusesEnvelope to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SnapshotResponse other)
+        public bool Equals(TaskStatusesEnvelope other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -107,14 +127,24 @@ namespace CLOUD.Artik.Model
 
             return 
                 (
-                    this.Data == other.Data ||
-                    this.Data != null &&
-                    this.Data.SequenceEqual(other.Data)
+                    this.Total == other.Total ||
+                    this.Total != null &&
+                    this.Total.Equals(other.Total)
                 ) && 
                 (
-                    this.Sdid == other.Sdid ||
-                    this.Sdid != null &&
-                    this.Sdid.Equals(other.Sdid)
+                    this.Data == other.Data ||
+                    this.Data != null &&
+                    this.Data.Equals(other.Data)
+                ) && 
+                (
+                    this.Offset == other.Offset ||
+                    this.Offset != null &&
+                    this.Offset.Equals(other.Offset)
+                ) && 
+                (
+                    this.Count == other.Count ||
+                    this.Count != null &&
+                    this.Count.Equals(other.Count)
                 );
         }
 
@@ -129,10 +159,14 @@ namespace CLOUD.Artik.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                if (this.Total != null)
+                    hash = hash * 59 + this.Total.GetHashCode();
                 if (this.Data != null)
                     hash = hash * 59 + this.Data.GetHashCode();
-                if (this.Sdid != null)
-                    hash = hash * 59 + this.Sdid.GetHashCode();
+                if (this.Offset != null)
+                    hash = hash * 59 + this.Offset.GetHashCode();
+                if (this.Count != null)
+                    hash = hash * 59 + this.Count.GetHashCode();
                 return hash;
             }
         }

@@ -37,29 +37,23 @@ namespace CLOUD.Artik.Model
     /// 
     /// </summary>
     [DataContract]
-    public partial class SnapshotResponse :  IEquatable<SnapshotResponse>
+    public partial class TaskList :  IEquatable<TaskList>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SnapshotResponse" /> class.
+        /// Initializes a new instance of the <see cref="TaskList" /> class.
         /// </summary>
-        /// <param name="Data">Data.</param>
-        /// <param name="Sdid">Sdid.</param>
-        public SnapshotResponse(Dictionary<string, Object> Data = null, string Sdid = null)
+        /// <param name="Tasks">Task list.</param>
+        public TaskList(List<Task> Tasks = null)
         {
-            this.Data = Data;
-            this.Sdid = Sdid;
+            this.Tasks = Tasks;
         }
         
         /// <summary>
-        /// Gets or Sets Data
+        /// Task list
         /// </summary>
-        [DataMember(Name="data", EmitDefaultValue=false)]
-        public Dictionary<string, Object> Data { get; set; }
-        /// <summary>
-        /// Gets or Sets Sdid
-        /// </summary>
-        [DataMember(Name="sdid", EmitDefaultValue=false)]
-        public string Sdid { get; set; }
+        /// <value>Task list</value>
+        [DataMember(Name="tasks", EmitDefaultValue=false)]
+        public List<Task> Tasks { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -67,9 +61,8 @@ namespace CLOUD.Artik.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class SnapshotResponse {\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  Sdid: ").Append(Sdid).Append("\n");
+            sb.Append("class TaskList {\n");
+            sb.Append("  Tasks: ").Append(Tasks).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -91,15 +84,15 @@ namespace CLOUD.Artik.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as SnapshotResponse);
+            return this.Equals(obj as TaskList);
         }
 
         /// <summary>
-        /// Returns true if SnapshotResponse instances are equal
+        /// Returns true if TaskList instances are equal
         /// </summary>
-        /// <param name="other">Instance of SnapshotResponse to be compared</param>
+        /// <param name="other">Instance of TaskList to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SnapshotResponse other)
+        public bool Equals(TaskList other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -107,14 +100,9 @@ namespace CLOUD.Artik.Model
 
             return 
                 (
-                    this.Data == other.Data ||
-                    this.Data != null &&
-                    this.Data.SequenceEqual(other.Data)
-                ) && 
-                (
-                    this.Sdid == other.Sdid ||
-                    this.Sdid != null &&
-                    this.Sdid.Equals(other.Sdid)
+                    this.Tasks == other.Tasks ||
+                    this.Tasks != null &&
+                    this.Tasks.SequenceEqual(other.Tasks)
                 );
         }
 
@@ -129,10 +117,8 @@ namespace CLOUD.Artik.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Data != null)
-                    hash = hash * 59 + this.Data.GetHashCode();
-                if (this.Sdid != null)
-                    hash = hash * 59 + this.Sdid.GetHashCode();
+                if (this.Tasks != null)
+                    hash = hash * 59 + this.Tasks.GetHashCode();
                 return hash;
             }
         }

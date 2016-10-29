@@ -106,6 +106,33 @@ namespace CLOUD.Artik.Api
         /// <returns>ApiResponse of DeviceTypesEnvelope</returns>
         ApiResponse<DeviceTypesEnvelope> GetDeviceTypesWithHttpInfo (string name, int? offset = null, int? count = null, string tags = null);
         /// <summary>
+        /// Get Device Types by Application
+        /// </summary>
+        /// <remarks>
+        /// Get Device Types by Application
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="appId">Application ID.</param>
+        /// <param name="productInfo">Flag to include the associated ProductInfo if present (optional)</param>
+        /// <param name="count">Desired count of items in the result set. (optional)</param>
+        /// <param name="offset">Offset for pagination. (optional)</param>
+        /// <returns>DeviceTypesEnvelope</returns>
+        DeviceTypesEnvelope GetDeviceTypesByApplication (string appId, bool? productInfo = null, int? count = null, int? offset = null);
+
+        /// <summary>
+        /// Get Device Types by Application
+        /// </summary>
+        /// <remarks>
+        /// Get Device Types by Application
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="appId">Application ID.</param>
+        /// <param name="productInfo">Flag to include the associated ProductInfo if present (optional)</param>
+        /// <param name="count">Desired count of items in the result set. (optional)</param>
+        /// <param name="offset">Offset for pagination. (optional)</param>
+        /// <returns>ApiResponse of DeviceTypesEnvelope</returns>
+        ApiResponse<DeviceTypesEnvelope> GetDeviceTypesByApplicationWithHttpInfo (string appId, bool? productInfo = null, int? count = null, int? offset = null);
+        /// <summary>
         /// Get Latest Manifest Properties
         /// </summary>
         /// <remarks>
@@ -220,6 +247,33 @@ namespace CLOUD.Artik.Api
         /// <param name="tags">Elements tagged with the list of tags. (comma separated) (optional)</param>
         /// <returns>Task of ApiResponse (DeviceTypesEnvelope)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeviceTypesEnvelope>> GetDeviceTypesAsyncWithHttpInfo (string name, int? offset = null, int? count = null, string tags = null);
+        /// <summary>
+        /// Get Device Types by Application
+        /// </summary>
+        /// <remarks>
+        /// Get Device Types by Application
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="appId">Application ID.</param>
+        /// <param name="productInfo">Flag to include the associated ProductInfo if present (optional)</param>
+        /// <param name="count">Desired count of items in the result set. (optional)</param>
+        /// <param name="offset">Offset for pagination. (optional)</param>
+        /// <returns>Task of DeviceTypesEnvelope</returns>
+        System.Threading.Tasks.Task<DeviceTypesEnvelope> GetDeviceTypesByApplicationAsync (string appId, bool? productInfo = null, int? count = null, int? offset = null);
+
+        /// <summary>
+        /// Get Device Types by Application
+        /// </summary>
+        /// <remarks>
+        /// Get Device Types by Application
+        /// </remarks>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="appId">Application ID.</param>
+        /// <param name="productInfo">Flag to include the associated ProductInfo if present (optional)</param>
+        /// <param name="count">Desired count of items in the result set. (optional)</param>
+        /// <param name="offset">Offset for pagination. (optional)</param>
+        /// <returns>Task of ApiResponse (DeviceTypesEnvelope)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceTypesEnvelope>> GetDeviceTypesByApplicationAsyncWithHttpInfo (string appId, bool? productInfo = null, int? count = null, int? offset = null);
         /// <summary>
         /// Get Latest Manifest Properties
         /// </summary>
@@ -844,6 +898,177 @@ namespace CLOUD.Artik.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("GetDeviceTypes", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<DeviceTypesEnvelope>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (DeviceTypesEnvelope) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceTypesEnvelope)));
+            
+        }
+
+        /// <summary>
+        /// Get Device Types by Application Get Device Types by Application
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="appId">Application ID.</param>
+        /// <param name="productInfo">Flag to include the associated ProductInfo if present (optional)</param>
+        /// <param name="count">Desired count of items in the result set. (optional)</param>
+        /// <param name="offset">Offset for pagination. (optional)</param>
+        /// <returns>DeviceTypesEnvelope</returns>
+        public DeviceTypesEnvelope GetDeviceTypesByApplication (string appId, bool? productInfo = null, int? count = null, int? offset = null)
+        {
+             ApiResponse<DeviceTypesEnvelope> localVarResponse = GetDeviceTypesByApplicationWithHttpInfo(appId, productInfo, count, offset);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Device Types by Application Get Device Types by Application
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="appId">Application ID.</param>
+        /// <param name="productInfo">Flag to include the associated ProductInfo if present (optional)</param>
+        /// <param name="count">Desired count of items in the result set. (optional)</param>
+        /// <param name="offset">Offset for pagination. (optional)</param>
+        /// <returns>ApiResponse of DeviceTypesEnvelope</returns>
+        public ApiResponse< DeviceTypesEnvelope > GetDeviceTypesByApplicationWithHttpInfo (string appId, bool? productInfo = null, int? count = null, int? offset = null)
+        {
+            // verify the required parameter 'appId' is set
+            if (appId == null)
+                throw new ApiException(400, "Missing required parameter 'appId' when calling DeviceTypesApi->GetDeviceTypesByApplication");
+
+            var localVarPath = "/applications/{appId}/devicetypes";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (appId != null) localVarPathParams.Add("appId", Configuration.ApiClient.ParameterToString(appId)); // path parameter
+            if (productInfo != null) localVarQueryParams.Add("productInfo", Configuration.ApiClient.ParameterToString(productInfo)); // query parameter
+            if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
+            if (offset != null) localVarQueryParams.Add("offset", Configuration.ApiClient.ParameterToString(offset)); // query parameter
+
+            // authentication (artikcloud_oauth) required
+            // oauth required
+            if (!String.IsNullOrEmpty(Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetDeviceTypesByApplication", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<DeviceTypesEnvelope>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (DeviceTypesEnvelope) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceTypesEnvelope)));
+            
+        }
+
+        /// <summary>
+        /// Get Device Types by Application Get Device Types by Application
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="appId">Application ID.</param>
+        /// <param name="productInfo">Flag to include the associated ProductInfo if present (optional)</param>
+        /// <param name="count">Desired count of items in the result set. (optional)</param>
+        /// <param name="offset">Offset for pagination. (optional)</param>
+        /// <returns>Task of DeviceTypesEnvelope</returns>
+        public async System.Threading.Tasks.Task<DeviceTypesEnvelope> GetDeviceTypesByApplicationAsync (string appId, bool? productInfo = null, int? count = null, int? offset = null)
+        {
+             ApiResponse<DeviceTypesEnvelope> localVarResponse = await GetDeviceTypesByApplicationAsyncWithHttpInfo(appId, productInfo, count, offset);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get Device Types by Application Get Device Types by Application
+        /// </summary>
+        /// <exception cref="CLOUD.Artik.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="appId">Application ID.</param>
+        /// <param name="productInfo">Flag to include the associated ProductInfo if present (optional)</param>
+        /// <param name="count">Desired count of items in the result set. (optional)</param>
+        /// <param name="offset">Offset for pagination. (optional)</param>
+        /// <returns>Task of ApiResponse (DeviceTypesEnvelope)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceTypesEnvelope>> GetDeviceTypesByApplicationAsyncWithHttpInfo (string appId, bool? productInfo = null, int? count = null, int? offset = null)
+        {
+            // verify the required parameter 'appId' is set
+            if (appId == null)
+                throw new ApiException(400, "Missing required parameter 'appId' when calling DeviceTypesApi->GetDeviceTypesByApplication");
+
+            var localVarPath = "/applications/{appId}/devicetypes";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (appId != null) localVarPathParams.Add("appId", Configuration.ApiClient.ParameterToString(appId)); // path parameter
+            if (productInfo != null) localVarQueryParams.Add("productInfo", Configuration.ApiClient.ParameterToString(productInfo)); // query parameter
+            if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
+            if (offset != null) localVarQueryParams.Add("offset", Configuration.ApiClient.ParameterToString(offset)); // query parameter
+
+            // authentication (artikcloud_oauth) required
+            // oauth required
+            if (!String.IsNullOrEmpty(Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetDeviceTypesByApplication", localVarResponse);
                 if (exception != null) throw exception;
             }
 

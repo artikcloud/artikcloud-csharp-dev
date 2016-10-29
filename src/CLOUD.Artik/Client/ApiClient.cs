@@ -280,9 +280,6 @@ namespace CLOUD.Artik.Client
                 }
                 return flattenedString.ToString();
             }
-            else if (obj is Boolean)
-                // Return boolean string ("true" or "false")
-                return ((Boolean)obj) ? "true" : "false";
             else
                 return Convert.ToString (obj);
         }
